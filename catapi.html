@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Cat random</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 2rem;
+    }
+    img {
+      max-width: 300px;
+      border-radius: 12px;
+      margin-top: 1rem;
+    }
+    button {
+      padding: 0.5rem 1rem;
+      font-size: 1rem;
+      cursor: pointer;
+      border: none;
+      border-radius: 8px;
+      background-color: #1100ff;
+      color: white;
+    }
+    button:hover {
+      background-color: #1100ff;
+    }
+  </style>
+</head>
+<body>
+  <h1> ¡Mirá este gato!</h1>
+  <button id="btnCat">Obtener gato</button>
+  <div>
+    <img id="catImage" src="" alt="Gatito" />
+  </div>
+
+  <script>
+    const btn = document.getElementById("btnCat");
+    const img = document.getElementById("catImage");
+
+    btn.addEventListener("click", () => {
+      fetch("https://api.thecatapi.com/v1/images/search")
+        .then(response => response.json())
+        .then(data => {
+          img.src = data[0].url;
+        })
+        .catch(error => {
+          console.error("Error al traer el gatito 😿:", error);
+        });
+    });
+  </script>
+</body>
+</html>
